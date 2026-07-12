@@ -50,7 +50,7 @@ const Hero = () => {
       {/** Green Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
            {[...Array(20)].map((_, i) => (
-            <div key={i} className="absolute w-2 h-2 rounded-full opacity-60"
+            <div key={i} className="absolute w-3 h-3 rounded-full opacity-60"
               style={{
                 backgroundColor: `${'#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`,
                 left: `${Math.random()*100}%`,

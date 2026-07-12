@@ -70,7 +70,7 @@ const Footer = () => {
          
 
           <div className="text-center text-sm  my-4 mb-0 pb-0 bg-muted-foreground text-black font-mono">
-          <div> © {new Date().getFullYear()} [Your Name]. All Rights Reserved.</div>
+          <div> © {new Date().getFullYear()} <span className="italic font-serif">(tamin)</span>. All Rights Reserved.</div>
           </div>
         </div>
     </section>
