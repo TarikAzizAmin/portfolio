@@ -1,9 +1,7 @@
 'use client';
 import Link from "next/link"
-import { Menu, Phone, X } from "lucide-react"
-import { useEffect, useState } from "react"
-import { usePathname, useSearchParams } from "next/navigation";
-import Button from "../components/Button";
+import { Menu, X } from "lucide-react"
+import { useState } from "react"
 
 const navLinks =[
   {  href: "#home", label: "Home"  },
@@ -15,14 +13,6 @@ const navLinks =[
 const Navbar = () => {
 
 
-  const pathname = usePathname();
-  const [hash, setHash] = useState('#home');
-  const searchParams = useSearchParams();
-
-  useEffect(()=>{
-    const currentHash = window.location.hash;
-    setHash(currentHash);
-  },[pathname, searchParams])
  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -42,12 +32,9 @@ const Navbar = () => {
             navLinks.map((link) => 
 
             {
-              const activeId = hash === link.href;
-              console.log(hash);
-
+             
             return(
-                   <Link key={link.label} href={link.href} className={ `px-4 py-2 text-sm text-black hover:text-white rounded-full hover:bg-primary font-sans
-                    ${activeId ? 'bg-primary text-white': ''}  `}>{link.label}</Link>
+                   <Link key={link.label} href={link.href} className={ `px-4 py-2 text-sm text-black hover:text-white rounded-full hover:bg-primary font-sans `}>{link.label}</Link>
             )}
             
 
