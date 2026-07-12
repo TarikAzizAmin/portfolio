@@ -1,4 +1,4 @@
-import GMap from "./components/GMap"
+import GMap from "./components/Map"
 import About from "./sections/About"
 import Contact from "./sections/Contact"
 import Hero from "./sections/Hero"
