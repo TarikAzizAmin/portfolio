@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./layout-components/Navbar";
 import Footer from "./layout-components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
 
+      <Suspense fallback={<div className="relative text-primary font-mono">Loading...</div>}>
         <Navbar />
+      </Suspense>
           <main>
             {children}
           </main>
