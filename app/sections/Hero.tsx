@@ -27,7 +27,7 @@ const Hero = () => {
 
   return (
     
-    <section className="relative min-h-screen" id="home">
+    <section className="relative min-h-scree" id="home">
       {/**Bg */}
       <div className="absolute inset-0">
           <Image src={backgroundImage}
