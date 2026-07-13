@@ -33,8 +33,10 @@ const Footer = () => {
                     <SiFacebook className="hover:bg-white hover:text-blue-500 h-10 w-10 m-2 p-2 rounded-2xl transition-colors"/>
                   </div>
                   <div className="flex border-2 border-muted-foreground gap-3 items-center p-2 w-fit hover:bg-muted-foreground hover:text-white">
-                    <ArrowUp />
-                    <span className="uppercase transition-colors">back to top</span>
+                    <Link href="#home">
+                      <ArrowUp />
+                      <span className="uppercase transition-colors">back to top</span>
+                    </Link>
                   </div>
 
                 </div>

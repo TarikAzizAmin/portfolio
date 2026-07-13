@@ -102,7 +102,7 @@ const Hero = () => {
                     <span className="text-sm text-primary font-mono">Follow us: </span>
                     <div className="flex gap-10">
                       {[
-                        {icon: <SiYoutube />, href: "#"},
+                        {icon: <SiYoutube />, href: "https://www.youtube.com/watch?v=msSc7Mv0QHY&list=RDmsSc7Mv0QHY&start_radio=1"},
                         {icon: <SiFacebook />, href: "#"},
                         {icon: <SiX />, href: "#"}
                       ].map((_, idx)=>(<Link href={_.href} key={idx} className="p-2 rounded-full glass hover:text-white hover:bg-primary transition-all duration-300 h-auto w-auto">
