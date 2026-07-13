@@ -1,7 +1,7 @@
 'use client';
-import {AlertCircle, CheckCircle, Flag, icons, Mail, Map, Phone, Send } from "lucide-react"
+import {AlertCircle, CheckCircle, Mail, Map, Phone, Send } from "lucide-react"
 import Button from "../components/Button";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { error } from "console";
 import Link from "next/link";
@@ -75,15 +75,17 @@ const Contact = () => {
     e.preventDefault();
 
     setIsLoading(true);
-    setSubmitStatus(
-      {
-        type: null, // null | 'success' | 'error'
-        status: "",
-      });
+    // setSubmitStatus(
+    //   {
+    //     type: null, // null | 'success' | 'error'
+    //     status: "",
+    //   });
 
     {/**Let's send the Contact Email */}
 
         try{
+
+          //TODO: Needs to configure these veriables on the production environment.
           const service_id = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
           const template_Id = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
           const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -93,7 +95,7 @@ const Contact = () => {
 
           }
 
-          {/** This is the functionality that handles the mail communication */}
+          {/** This is the functionality that handles the sending mail communication */}
           await emailjs.send(service_id, 
                             template_Id, 
                             {
@@ -106,24 +108,28 @@ const Contact = () => {
                             publicKey);
 
           setSubmitStatus({
-            type: "success",
-            status: "Email sent successfull, we will get back to you ASAP."
-          })
+            status: "Email sent successfull, we will get back to you ASAP.",
+            type: "success"
+          });
+          setFormData({name: "", email: "", message: ""})
+
 
         }
         catch(err){
           if(err instanceof Error){
             console.log(err.message);
             setSubmitStatus({
-              type: "error",
               status: err.message,
+              type: "error"
+
             })
           }
           else{
             console.log("Unexpected error:", err);
             setSubmitStatus({
-              type: "error",
-              status: "An unexpected error occured."
+              status: "An unexpected error occured.",
+              type: "error"
+
             });
           }
 
@@ -233,8 +239,8 @@ const Contact = () => {
                     }
                   </Button>
 
-                  {/** TODO: add a timeout for this after message alert */}
-
+             
+                  
                   {submitStatus.type && (
                     <div className={`flex flex-row h-auto text-sm items-center justify-center gap-3 overflow-hidden
                      p-4 rounded-xl ${submitStatus.type === "success"?
@@ -243,7 +249,8 @@ const Contact = () => {
                      }`}>
                       
                     {
-                      submitStatus.type === "success" ? (
+                      submitStatus.type === "success" ? 
+                      (
                         <>
                           <CheckCircle />
                           <p>{submitStatus.status}</p>
@@ -265,6 +272,8 @@ const Contact = () => {
                 </form>
             </div>
 
+            
+
             {/**Right column */}
 
             <div className="relative space-y-6 overflow-hidden my-auto animate-fade-in animation-delay-600">
@@ -274,11 +283,11 @@ const Contact = () => {
                      Contact Information<span className="animate-ping">_</span>
                   </h3>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 inset-0">
                     {contactInfo.map((info, idx)=>(
                       <Link href={info.href} key={idx} 
-                        className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        className="flex items-center gap-4 rounded-xl hover:bg-surface transition-colors">
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex flex-shrink-0 items-center justify-center">
                               {info.icon}
                         </div>
                         <div>
